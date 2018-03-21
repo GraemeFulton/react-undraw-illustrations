@@ -1,6 +1,7 @@
 ## React unDraw Components
 
 #### MIT licensed illustrations by unDraw for your React projects
+![unDraw screenshot](readme.png)
 
 * SVGs from [unDraw](https://undraw.co/) as customisable images in React.  
 * It's an early version, only containing 5 illustrations, will be adding the rest soon!
@@ -20,5 +21,5 @@ Then use them, passing settings you like, e.g:
 
 #### Check out how the components work:
 
-![alt text](readme.gif)
+![styleguidist animation](readme.gif)
 
