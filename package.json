@@ -1,8 +1,9 @@
 {
   "name": "react-undraw-illustrations",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "unDraw: MIT licensed illustrations for every project you can imagine and create...for React!",
   "private": false,
+  "url":"http://undraw.co",
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -26,6 +27,10 @@
   ],
   "author": "Graeme Fulton <graeme@prototypr.io> (https://prototypr.io/home)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GraemeFulton/react-undraw-illustrations"
+  },
   "devDependencies": {
     "react-styleguidist": "^6.4.0"
   }
