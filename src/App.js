@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import UndrawBrowser from './components/undraw-illustrations/undraw-browser/undraw-browser.js';
-import UndrawDesigner from './components/undraw-illustrations/undraw-designer/undraw-designer.js';
-import UndrawEverywhere from './components/undraw-illustrations/undraw-everywhere/undraw-everywhere.js';
-import UndrawResponsive from './components/undraw-illustrations/undraw-responsive/undraw-responsive.js';
-import UndrawTabs from './components/undraw-illustrations/undraw-tabs/undraw-tabs.js';
+import UndrawTabs from './node_modules/components/undraw-tabs/UndrawTabs.js';
+import UndrawDesigner from './node_modules/components/undraw-designer/UndrawDesigner.js';
+import UndrawEverywhere from './node_modules/components/undraw-everywhere/UndrawEverywhere.js';
+import UndrawResponsive from './node_modules/components/undraw-responsive/UndrawResponsive.js';
+import UndrawBrowser from './node_modules/components/undraw-browser/UndrawBrowser.js';
 
 
 class App extends Component {
