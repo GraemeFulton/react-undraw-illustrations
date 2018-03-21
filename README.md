@@ -19,6 +19,8 @@ Then use them, passing settings you like, e.g:
 
 `<UndrawDesigner skinColor="brown" hairColor="#222"/>`
 
+<hr>
+
 #### Check out how the components work:
 
 ![styleguidist animation](readme.gif)
