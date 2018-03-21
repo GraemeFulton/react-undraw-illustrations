@@ -1,0 +1,32 @@
+{
+  "name": "react-undraw-illustrations",
+  "version": "1.0.0",
+  "description": "unDraw: MIT licensed illustrations for every project you can imagine and create...for React!",
+  "private": false,
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build"
+  },
+  "keywords": [
+    "undraw",
+    "illustrations",
+    "reactjs",
+    "react",
+    "artwork",
+    "art"
+  ],
+  "author": "Graeme Fulton <graeme@prototypr.io> (https://prototypr.io/home)",
+  "license": "MIT",
+  "devDependencies": {
+    "react-styleguidist": "^6.4.0"
+  }
+}
