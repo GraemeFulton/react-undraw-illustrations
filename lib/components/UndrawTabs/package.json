@@ -1,0 +1,5 @@
+{
+    "private": true,
+    "name": "UndrawTabs",
+    "main": "./undraw-tabs.js"
+}
