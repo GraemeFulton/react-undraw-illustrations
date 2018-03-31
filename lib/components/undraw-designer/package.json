@@ -1,5 +1,5 @@
 {
     "private": true,
-    "name": "UndrawBrowser",
-    "main": "./undraw-browser.js"
+    "name": "UndrawDesigner",
+    "main": "./UndrawDesigner.js"
 }
