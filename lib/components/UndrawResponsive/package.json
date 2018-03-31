@@ -1,5 +1,5 @@
 {
     "private": true,
     "name": "UndrawResponsive",
-    "main": "./undraw-responsive.js"
+    "main": "./UndrawResponsive.js"
 }
