@@ -1,0 +1,5 @@
+{
+    "private": true,
+    "name": "UndrawCalendar",
+    "main": "./UndrawCalendar.js"
+}
