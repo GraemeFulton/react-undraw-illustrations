@@ -4,7 +4,7 @@
 ![unDraw screenshot](readme.png)
 
 * SVGs from [unDraw](https://undraw.co/) as customisable images in React.  
-* It's an early version, only containing 5 illustrations, will be adding the rest soon!
+* It's an early version, only containing 10 illustrations, adding more as I get time - contributors welcome!
 * available to try on [npm](https://www.npmjs.com/package/react-undraw-illustrations)
 * play with it in [styleguidist](https://graemefulton.github.io)
 
@@ -24,4 +24,9 @@ Then use them, passing settings you like, e.g:
 #### Check out how the components work:
 
 ![styleguidist animation](readme.gif)
+
+#### Find out more about how this was made:
+
+Read about it on CSS-Tricks 👉 [How to Create a Component Library From SVG Illustrations](https://css-tricks.com/how-to-create-a-component-library-from-svg-illustrations/)
+![css tricks article image](https://res.cloudinary.com/css-tricks/image/upload/c_scale,w_1000,f_auto,q_auto/v1522886582/react-svg-component-library-5_skzbmh.jpg)
 
