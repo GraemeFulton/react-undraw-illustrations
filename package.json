@@ -38,6 +38,7 @@
     "react": "^16.2.0",
     "react-dev-utils": "^5.0.0",
     "react-dom": "^16.2.0",
+    "shelljs": "^0.8.2",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.6.2",
@@ -52,7 +53,8 @@
     "lib": "babel src/node_modules --out-dir lib --copy-files",
     "test": "node scripts/test.js --env=jsdom",
     "styleguide": "styleguidist server",
-    "styleguide:build": "styleguidist build"
+    "styleguide:build": "styleguidist build",
+    "convert": "node scripts/convert"
   },
   "keywords": [
     "undraw",
