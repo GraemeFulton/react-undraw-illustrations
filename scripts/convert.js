@@ -12,20 +12,37 @@ glob('src/svg/*.svg', (error, files) => {
     const componentName = startCase(onlyTitle).replace(/ /g, '')
     fs.mkdirSync(`${path}${componentName}`);
     createJs(componentName, file);
-    // insertJsContent(componentName, file);
-    // fs.writeFileSync(`${path}${componentName}/${componentName}.js`, insertJsContent(componentName));
-    // fs.writeFileSync(`${path}${componentName}/Readme.md`, insertReadMeContent());
-    // fs.writeFileSync(`${path}${componentName}/package.json`, insertJsonContent());
+    createJson(componentName);
+    createReadMe(componentName);
   });
 })
 
-// function insertJsonContent(component) {
-//   return {
-//     "private": true,
-//     "name": `${component}`,
-//     "main" `./${component}.js`
-//   }
-// }
+function createReadMe(component) {
+  const readMeContent =
+    `${component}` + " example: ```js" +
+    `<${component}
+        primaryColor='#6c68fb'
+        accentColor='#43d1a0'
+        height='250px'
+    />` + "```"
+
+  fs.writeFileSync(
+    `${path}${component}/Readme.md`,
+    readMeContent
+  );
+}
+
+function createJson(component) {
+  const jsonContent = {
+    "private": true,
+    "name": `${component}`,
+    "main": `./${component}.js`,
+  }
+
+  fs.writeFileSync(
+    `${path}${component}/package.json`,
+    JSON.stringify(jsonContent));
+}
 
 function createJs(component, file) {
   const svgFile = fs.readFileSync(file, 'utf-8');
