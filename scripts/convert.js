@@ -14,6 +14,7 @@ glob('src/svg/*.svg', (error, files) => {
     createJs(componentName, file);
     createJson(componentName);
     createReadMe(componentName);
+    fs.unlinkSync(file);
   });
 })
 
@@ -49,6 +50,9 @@ function createJs(component, file) {
   return svgToJsx(svgFile)
   .then (jsxFile => {
     fs.writeFileSync(`${path}${component}/${component}.js`, generateReactComponent(component, jsxFile));
+  })
+  .catch (err => {
+    throw new Error("failed to generate React component")
   })
 }
 
