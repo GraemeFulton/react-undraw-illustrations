@@ -1,25 +1,24 @@
-var shell = require('shelljs');
-var startCase = require('lodash.startcase');
+const glob = require('glob');
+const startCase = require('lodash.startcase');
+const svgToJsx = require('svg-to-jsx');
 
-shell.ls('src/svg/*.svg').forEach(filename => {
-  const withoutExtension = filename.slice(8, filename.length-9)
-  const component = startCase(withoutExtension).replace(/ /g, '')
-  shell.mkdir(`src/node_modules/components/${component}`);
-  //shell.touch(`src/node_modules/components/${component}/package.json`);
-  //shell.touch(`src/node_modules/components/${component}/Readme.md`);
-  // shell.touch(`src/node_modules/components/${component}/${component}.js`);
-  // shell.cd(`src/node_modules/components/${component}/package.json`);
-  createJs(component);
-  //shell.rm(filename)
+const fs = require('fs');
+const path = "src/node_modules/components/";
+//glob allows selecting only a certain type of files, hard to do with fs.readdir alone
+glob('src/svg/*.svg', (error, files) => {
+  if(error) throw new Error('glob cannot read this file for some reason');
+  files.forEach(file => {
+    const onlyTitle = file.slice(8, file.length-9)
+    const componentName = startCase(onlyTitle).replace(/ /g, '')
+    fs.mkdirSync(`${path}${componentName}`);
+    createJs(componentName, file);
+    // insertJsContent(componentName, file);
+    // fs.writeFileSync(`${path}${componentName}/${componentName}.js`, insertJsContent(componentName));
+    // fs.writeFileSync(`${path}${componentName}/Readme.md`, insertReadMeContent());
+    // fs.writeFileSync(`${path}${componentName}/package.json`, insertJsonContent());
+  });
 })
 
-// function createJson(component) {
-//  const file = `src/node_modules/components/${component}/package.json`
-//   shell.touch(file);
-////How do I insert content into the file?
-//   return insertJsonContent(component)
-// }
-//
 // function insertJsonContent(component) {
 //   return {
 //     "private": true,
@@ -28,20 +27,21 @@ shell.ls('src/svg/*.svg').forEach(filename => {
 //   }
 // }
 
-function createJs(component) {
-  const file = `src/node_modules/components/${component}/${component}.js`
-  shell.touch(file);
-  //How do I insert content into the file?
+function createJs(component, file) {
+  const svgFile = fs.readFileSync(file, 'utf-8');
+  return svgToJsx(svgFile)
+  .then (jsxFile => {
+    fs.writeFileSync(`${path}${component}/${component}.js`, generateReactComponent(component, jsxFile));
+  })
 }
 
-function insertJsContent(component) {
+function generateReactComponent(component, content) {
   return `
     import React from 'react';
     import PropTypes from 'prop-types';
 
     const ${component} = props => (
-      <div>
-      </div>
+      ${content}
     );
 
     ${component}.propTypes = {
@@ -58,7 +58,6 @@ function insertJsContent(component) {
         */
         class: PropTypes.string
       };
-
 
       ${component}.defaultProps = {
         primaryColor:'#6c68fb',
