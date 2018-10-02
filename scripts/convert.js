@@ -10,11 +10,11 @@ glob('src/svg/*.svg', (error, files) => {
   files.forEach(file => {
     const onlyTitle = file.slice(8, file.length-9)
     const componentName = startCase(onlyTitle).replace(/ /g, '')
-    fs.mkdirSync(`${path}${componentName}`);
+    // fs.mkdirSync(`${path}${componentName}`);
     createJs(componentName, file);
-    createJson(componentName);
-    createReadMe(componentName);
-    fs.unlinkSync(file);
+    // createJson(componentName);
+    // createReadMe(componentName);
+    //fs.unlinkSync(file);
   });
 })
 
@@ -51,10 +51,10 @@ function createJs(component, file) {
   const svgFile = fs.readFileSync(file, 'utf-8');
   return svgToJsx(svgFile)
   .then (jsxFile => {
-    const prettierSvg = prettier.format(configuredJsxFile, {
+    const prettierJsx = prettier.format(jsxFile, {
       parser: 'babylon',
     });
-    fs.writeFileSync(`${path}${component}/${component}.js`, generateReactComponent(component, jsxFile));
+    fs.writeFileSync(`${path}${component}/${component}.js`, generateReactComponent(component, prettierJsx));
   })
   .catch (err => {
     throw new Error("failed to generate React component")
@@ -62,6 +62,7 @@ function createJs(component, file) {
 }
 
 function generateReactComponent(component, content) {
+  console.log(component, content);
   return `
     import React from 'react';
     import PropTypes from 'prop-types';
