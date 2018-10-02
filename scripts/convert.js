@@ -1,7 +1,7 @@
 const glob = require('glob');
 const startCase = require('lodash.startcase');
 const svgToJsx = require('svg-to-jsx');
-
+const prettier =  require('prettier');
 const fs = require('fs');
 const path = "src/node_modules/components/";
 //glob allows selecting only a certain type of files, hard to do with fs.readdir alone
@@ -20,12 +20,14 @@ glob('src/svg/*.svg', (error, files) => {
 
 function createReadMe(component) {
   const readMeContent =
-    `${component}` + " example: ```js" +
+    `${component}` + " example:" + "\n" +
+    "```js " + "\n" +
     `<${component}
-        primaryColor='#6c68fb'
-        accentColor='#43d1a0'
-        height='250px'
-    />` + "```"
+    primaryColor='#6c68fb'
+    accentColor='#43d1a0'
+    height='250px'
+    />` + "\n" +
+    "```"
 
   fs.writeFileSync(
     `${path}${component}/Readme.md`,
@@ -49,6 +51,9 @@ function createJs(component, file) {
   const svgFile = fs.readFileSync(file, 'utf-8');
   return svgToJsx(svgFile)
   .then (jsxFile => {
+    const prettierSvg = prettier.format(configuredJsxFile, {
+      parser: 'babylon',
+    });
     fs.writeFileSync(`${path}${component}/${component}.js`, generateReactComponent(component, jsxFile));
   })
   .catch (err => {
