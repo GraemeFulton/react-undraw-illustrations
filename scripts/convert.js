@@ -2,8 +2,10 @@ const glob = require('glob');
 const startCase = require('lodash.startcase');
 const svgToJsx = require('svg-to-jsx');
 const prettier =  require('prettier');
+const svgr = require('@svgr/core');
 const fs = require('fs');
 const path = "src/node_modules/components/";
+const reactDomTemplate = require('../src/conversionTemplate.js');
 //glob allows selecting only a certain type of files, hard to do with fs.readdir alone
 glob('src/svg/*.svg', (error, files) => {
   if(error) throw new Error('glob cannot read this file for some reason');
@@ -11,7 +13,7 @@ glob('src/svg/*.svg', (error, files) => {
     const onlyTitle = file.slice(8, file.length-9)
     const componentName = startCase(onlyTitle).replace(/ /g, '')
     // fs.mkdirSync(`${path}${componentName}`);
-    createJs(componentName, file);
+    createJs2(file, componentName);
     // createJson(componentName);
     // createReadMe(componentName);
     //fs.unlinkSync(file);
@@ -47,22 +49,49 @@ function createJson(component) {
     JSON.stringify(jsonContent));
 }
 
-function createJs(component, file) {
+function createJs2(file, component) {
   const svgFile = fs.readFileSync(file, 'utf-8');
-  return svgToJsx(svgFile)
+  const props = svgr.getProps({});
+
+  return svgr.default(
+    svgFile, {
+      dimensions: false,
+      componentName: "MyComponent",
+      svgProps: {
+        style: '',
+        className: '{ props.class }',
+      },
+      svgoConfig: { "plugins": [{ "removeTitle": false }] },
+    }
+  )
   .then (jsxFile => {
-    const prettierJsx = prettier.format(jsxFile, {
-      parser: 'babylon',
-    });
-    fs.writeFileSync(`${path}${component}/${component}.js`, generateReactComponent(component, prettierJsx));
+    console.log(jsxFile);
+    // const prettierJsx = prettier.format(jsxFile, {
+    //   parser: 'babylon',
+    // });
+    // fs.writeFileSync(`${path}${component}/${component}.js`, generateReactComponent(component, prettierJsx));
   })
   .catch (err => {
     throw new Error("failed to generate React component")
   })
 }
 
-function generateReactComponent(component, content) {
-  console.log(component, content);
+
+// function createJs(component, file) {
+//   const svgFile = fs.readFileSync(file, 'utf-8');
+//   return svgToJsx(svgFile)
+//   .then (jsxFile => {
+//     const prettierJsx = prettier.format(jsxFile, {
+//       parser: 'babylon',
+//     });
+//     fs.writeFileSync(`${path}${component}/${component}.js`, generateReactComponent(component, prettierJsx));
+//   })
+//   .catch (err => {
+//     throw new Error("failed to generate React component")
+//   })
+// }
+
+function generateReactComponent(content, props, component) {
   return `
     import React from 'react';
     import PropTypes from 'prop-types';
