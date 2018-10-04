@@ -5,7 +5,7 @@ const prettier =  require('prettier');
 const svgr = require('@svgr/core');
 const fs = require('fs');
 const path = "src/node_modules/components/";
-const reactDomTemplate = require('../src/conversionTemplate.js');
+const { DEFAULT_CONFIG } = require('../util/svgr.config.js');
 //glob allows selecting only a certain type of files, hard to do with fs.readdir alone
 glob('src/svg/*.svg', (error, files) => {
   if(error) throw new Error('glob cannot read this file for some reason');
@@ -55,6 +55,7 @@ function createJs2(file, component) {
 
   return svgr.default(
     svgFile, {
+      template: generateReactComponent(),
       dimensions: false,
       componentName: "MyComponent",
       svgProps: {
