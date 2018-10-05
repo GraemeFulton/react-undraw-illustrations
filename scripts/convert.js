@@ -5,7 +5,9 @@ const prettier =  require('prettier');
 const svgr = require('@svgr/core');
 const fs = require('fs');
 const path = "src/node_modules/components/";
-const { DEFAULT_CONFIG } = require('../util/svgr.config.js');
+const unDrawConfig = require('../svgr_util/svgr.config');
+// const { unDrawTemplate } = require('../svgr_util/svgr_UndrawTemplate');
+//const reactDomTemplate = require('../svgr_util/svgr_template');
 //glob allows selecting only a certain type of files, hard to do with fs.readdir alone
 glob('src/svg/*.svg', (error, files) => {
   if(error) throw new Error('glob cannot read this file for some reason');
@@ -51,19 +53,12 @@ function createJson(component) {
 
 function createJs2(file, component) {
   const svgFile = fs.readFileSync(file, 'utf-8');
-  const props = svgr.getProps({});
 
   return svgr.default(
-    svgFile, {
-      template: generateReactComponent(),
-      dimensions: false,
-      componentName: "MyComponent",
-      svgProps: {
-        style: '',
-        className: '{ props.class }',
-      },
-      svgoConfig: { "plugins": [{ "removeTitle": false }] },
-    }
+    svgFile,
+    //this config file customizes the rendered React component specifically for this project
+    unDrawConfig,
+    { componentName: component }
   )
   .then (jsxFile => {
     console.log(jsxFile);
