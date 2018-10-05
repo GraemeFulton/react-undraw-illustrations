@@ -1,5 +1,17 @@
 //THIS TEMPLATE DOES NOT SUPPORT INJECTING getExport and getForwardRed from svgr
-const unDrawTemplate = (code, config, state) => {
+module.exports = unDrawTemplate = (code, config, state) => {
+  const getProps = config => {
+    const props = []
+    if (config.ref) props.push('svgRef')
+    if (config.titleProp) props.push('title')
+    if (config.expandProps) props.push('...props')
+
+    if (props.length === 0) return '()'
+    if (props.length === 1 && config.expandProps) return 'props'
+
+    return `({ ${props.join(', ')} })`
+  }
+
   const props = getProps(config, state);
 
   return `
@@ -34,5 +46,3 @@ const unDrawTemplate = (code, config, state) => {
     export default ${state.componentName};
   `
 }
-
-module.exports = unDrawTemplate;

@@ -7,7 +7,6 @@ const fs = require('fs');
 const path = "src/node_modules/components/";
 const unDrawConfig = require('../svgr_util/svgr.config');
 // const { unDrawTemplate } = require('../svgr_util/svgr_UndrawTemplate');
-//const reactDomTemplate = require('../svgr_util/svgr_template');
 //glob allows selecting only a certain type of files, hard to do with fs.readdir alone
 glob('src/svg/*.svg', (error, files) => {
   if(error) throw new Error('glob cannot read this file for some reason');

@@ -1,4 +1,5 @@
 const unDrawTemplate = require('../svgr_util/svgr_UndrawTemplate');
+const reactDomTemplate = require('../svgr_util/svgr_template');
 
 const unDrawConfig = {
   h2xConfig: null,
