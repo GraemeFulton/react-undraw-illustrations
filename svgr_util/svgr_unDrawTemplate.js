@@ -16,7 +16,7 @@ module.exports = unDrawTemplate = (code, config, state) => {
         /**
         * percentage
         */
-        style: PropTypes.object,
+        height: PropTypes.string,
         /**
         * custom class for svg
         */
@@ -25,7 +25,7 @@ module.exports = unDrawTemplate = (code, config, state) => {
 
       ${state.componentName}.defaultProps = {
         primaryColor:'#6c68fb',
-        style: { height: '100%', width:'100%' },
+        height: '250px',
         class:''
       };
 

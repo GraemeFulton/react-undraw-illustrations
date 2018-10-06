@@ -33,7 +33,7 @@ function createReadMe(component) {
     `<${component}
     primaryColor='#6c68fb'
     accentColor='#43d1a0'
-    style={height: '250px', width: '100%'}
+    height= '250px'
     />` + "\n" +
     "```"
 
@@ -65,6 +65,7 @@ function createJs(file, component) {
   )
   .then (jsxFile => {
     fs.writeFileSync(`${path}${component}/${component}.js`, jsxFile);
+    console.log(`Succesfully created component: ${component}` )
   })
   .catch (err => {
     throw new Error("failed to generate React component, check svgr config and template")

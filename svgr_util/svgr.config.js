@@ -16,7 +16,7 @@ const unDrawConfig = {
   titleProp: false,
   runtimeConfig: true,
   svgProps: {
-    style: '{ props.style }',
+    style: '',
     className: '{ props.class }',
   },
 };
