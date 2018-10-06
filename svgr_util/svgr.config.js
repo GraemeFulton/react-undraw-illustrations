@@ -1,4 +1,4 @@
-const unDrawTemplate = require('svgr_UndrawTemplate');
+const unDrawTemplate = require('./svgr_UndrawTemplate');
 
 const unDrawConfig = {
   h2xConfig: null,
