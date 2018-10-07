@@ -8,7 +8,7 @@ const fs = require('fs');
 const unDrawConfig = require('../svgr_util/svgr.config');
 const path = "src/node_modules/components/";
 //glob allows selecting only a certain type of files, hard to do with fs.readdir alone
-glob('src/svg/*.svg', (error, files) => {
+glob('svg/*.svg', (error, files) => {
   if(error) throw new Error('glob cannot read this file for some reason');
   files.forEach(file => {
     const componentName = formatFileName(file);
@@ -17,12 +17,12 @@ glob('src/svg/*.svg', (error, files) => {
     createJson(componentName);
     createReadMe(componentName);
     // Deletes the original file, disable if you want to keep the files:
-    //  fs.unlinkSync(file);
+    fs.unlinkSync(file);
   });
 })
 
 function formatFileName(file){
-  const pathAndExtensionRemoved = file.slice(8, file.length -4);
+  const pathAndExtensionRemoved = file.slice(4, file.length -4);
   return 'Undraw' + startCase(pathAndExtensionRemoved).replace(/ /g, '');
 }
 
