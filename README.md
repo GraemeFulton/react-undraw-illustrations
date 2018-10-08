@@ -5,7 +5,7 @@
 ![unDraw screenshot](readme.png)
 
 * SVGs from [unDraw](https://undraw.co/) as customisable images in React.  
-* It's an early version, only containing 10 illustrations, adding more as I get time - contributors welcome! *update - now 21!
+* It's an early version, only containing 10 illustrations, adding more as I get time - contributors welcome! *update - now 21! *update now 369!!*
 * available to try on [npm](https://www.npmjs.com/package/react-undraw-illustrations)
 * play with it in [styleguidist](https://graemefulton.github.io)
 
